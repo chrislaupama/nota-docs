@@ -3,11 +3,12 @@ title: "Управление через MCP"
 description: "Позвольте ИИ-ассистенту, например Claude, работать в открытом проекте через встроенный MCP-сервер Nota — треки, ноты, устройства, Session, сведение, экспорт и многое другое."
 sidebar:
   order: 3
-updated: "0.50.1"
+updated: "0.51.2"
 status: done
 sources:
   - src/managed/Nota.App/PreferencesWindow.cs
   - src/managed/Nota.Mcp/Tools/ProjectTools.cs
+  - src/managed/Nota.Mcp/Tools/ExportTools.cs
 ---
 
 import Shot from '@components/Shot.astro';
@@ -51,7 +52,7 @@ import { Steps, Aside } from '@astrojs/starlight/components';
 - **Сэмплы** — поиск по библиотеке по виду, темпу, тональности и имени, похожие звуки, загрузка
   сэмплов.
 - **ИИ-функции** — Separate Stems и конвертация клипа в MIDI.
-- **Экспорт** — мастер или стемы в WAV.
+- **Экспорт** — мастер или стемы в WAV, FLAC или MP3 (`format`, `bitrateKbps` для MP3).
 - **MIDI** — список входов и работа с назначениями MIDI Learn.
 
 <Aside>

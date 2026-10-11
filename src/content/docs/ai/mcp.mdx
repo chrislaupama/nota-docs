@@ -3,11 +3,12 @@ title: "AI control over MCP"
 description: "Let an AI assistant such as Claude work in your open project through Nota's built-in MCP server — tracks, notes, devices, Session, mixing, export and more."
 sidebar:
   order: 3
-updated: "0.50.1"
+updated: "0.51.2"
 status: done
 sources:
   - src/managed/Nota.App/PreferencesWindow.cs
   - src/managed/Nota.Mcp/Tools/ProjectTools.cs
+  - src/managed/Nota.Mcp/Tools/ExportTools.cs
 ---
 
 import Shot from '@components/Shot.astro';
@@ -50,7 +51,7 @@ network can reach it.
 - **Session** — the whole clip launcher: slots, clips, scenes, launching, follow actions, recording.
 - **Samples** — search the library by kind, tempo, key and name, find similar sounds, load samples.
 - **AI features** — Separate Stems and Convert to MIDI on a clip.
-- **Export** — the master or stems to WAV.
+- **Export** — the master or stems to WAV, FLAC or MP3 (`format`, `bitrateKbps` for MP3).
 - **MIDI** — list inputs and work with MIDI Learn mappings.
 
 <Aside>

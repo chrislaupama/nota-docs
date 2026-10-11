@@ -251,8 +251,8 @@ sections:
 
   export:
     - page: export/export-audio
-      covers: [Export audio ⇧⌘E, master / stems, WAV formats, range, normalize]
-      sources: [src/managed/Nota.App/ExportWindow.cs, src/native/nota.engine/src/Engine_Render.cpp]
+      covers: [Export audio ⇧⌘E, master / stems, WAV/FLAC/MP3 formats, range, normalize, MCP format arg]
+      sources: [src/managed/Nota.App/ExportWindow.cs, src/managed/Nota.Infrastructure/Audio/AudioExporter.cs, src/native/nota.engine/src/nota_encoder.cpp, src/native/nota.engine/src/Engine_Render.cpp]
       status: done
 
   preferences:

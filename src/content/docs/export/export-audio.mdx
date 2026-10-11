@@ -1,35 +1,41 @@
 ---
 title: "Export audio"
-description: "Render the song or the loop to WAV — sample rate, bit depth, true-peak normalising, dither, a release tail, and stems."
+description: "Render the song or the loop to WAV, FLAC or MP3 — sample rate, bit depth or bitrate, true-peak normalising, dither, a release tail, and stems."
 sidebar:
   order: 1
-updated: "0.50.1"
+updated: "0.51.2"
 status: done
 sources:
   - src/managed/Nota.App/ExportWindow.cs
+  - src/managed/Nota.Infrastructure/Audio/AudioExporter.cs
+  - src/native/nota.engine/src/nota_encoder.cpp
   - src/native/nota.engine/src/Engine_Render.cpp
 ---
 
 import Shot from '@components/Shot.astro';
 import Kbd from '@components/Kbd.astro';
 
-**File ▸ Export audio…** (<Kbd>⌘ ⇧ E</Kbd>) renders the project to a WAV file.
+**File ▸ Export audio…** (<Kbd>⌘ ⇧ E</Kbd>) renders the project to an audio file: WAV, FLAC or
+MP3.
 
 <Shot id="export/export-window" alt="The Export Audio window" width={280} />
 
 | Option | What it does |
 |---|---|
 | **Range** | **Loop** (the loop range) or **Full song** |
-| **Format** | WAV |
-| **Sample rate** | 44 100, 48 000 or 96 000 Hz |
-| **Bit depth** | 16-bit, 24-bit or 32-bit float |
+| **Format** | **WAV** (uncompressed), **FLAC** (lossless, roughly half the WAV size) or **MP3** (small and shareable) |
+| **Sample rate** | 44 100, 48 000 or 96 000 Hz — 96 000 is not offered for MP3 (the format tops out at 48 000) |
+| **Bit depth** | WAV: 16-bit, 24-bit or 32-bit float · FLAC: 16-bit or 24-bit |
+| **Quality** | MP3 only: 128–320 kbps constant bitrate, 320 by default |
 | **Normalize −1 dBTP** | Brings the loudest true (inter-sample) peak to −1 dBTP — measured exactly on the render, so it never overshoots |
-| **Dither** | TPDF dither, offered for 16-bit only |
+| **Dither** | TPDF dither, offered for 16-bit WAV and FLAC only |
 | **Add 1-bar release tail** | Lets reverbs and delays ring out after the end |
-| **Export stems** | One file per track (post-fader) instead of the mix |
+| **Export stems** | One file per track (post-fader), in the selected format, instead of the mix |
 
-The window estimates the number of files and their size before you start. Rendering is offline and
-bit-exact; a progress window shows it.
+The window estimates the number of files and their size before you start — the estimate follows
+the format. Rendering is offline and bit-exact; a progress window shows it. FLAC is lossless: the
+decoded file is identical to the render. MP3 is lossy and carries a few milliseconds of codec
+padding at the start — players that read the gapless tag compensate automatically.
 
 With **Export stems** and Normalize on, all stems share one gain taken from the full mix, so they
 still add up to the mix at −1 dBTP.
