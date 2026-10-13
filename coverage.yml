@@ -34,8 +34,8 @@ sections:
 
   basics:
     - page: basics/projects
-      covers: [New/Open/Save/Save As (.nota), autosave & recovery, quit-without-saving dialog, Import audio, MIDI import]
-      sources: [src/managed/Nota.App/MainWindow.Recovery.cs, src/managed/Nota.App/SaveChangesWindow.cs, src/managed/Nota.App/MainWindow.AudioImport.cs, src/managed/Nota.App/MainWindow.MidiImport.cs, src/managed/Nota.App/MainWindow.MissingPlugins.cs]
+      covers: [New/Open/Save/Save As (.nota), new-project template (Synth + audio + Reverb/Delay returns), autosave & recovery, quit-without-saving dialog, Import audio, MIDI import]
+      sources: [src/managed/Nota.Infrastructure/Persistence/ProjectTemplate.cs, src/managed/Nota.App/MainWindow.Recovery.cs, src/managed/Nota.App/SaveChangesWindow.cs, src/managed/Nota.App/MainWindow.AudioImport.cs, src/managed/Nota.App/MainWindow.MidiImport.cs, src/managed/Nota.App/MainWindow.MissingPlugins.cs]
       mockup: Nota Unsaved Dialog.html
       status: done
     - page: basics/version-history
