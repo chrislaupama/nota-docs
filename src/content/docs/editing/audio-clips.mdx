@@ -3,7 +3,7 @@ title: Audio clips and warp
 description: Editing audio clips — trimming, gain, pitch, reverse, warping to the tempo with markers, volume and pan envelopes, and the clip ADSR.
 sidebar:
   order: 2
-updated: "0.51.2"
+updated: "0.52.1"
 status: done
 sources:
   - src/managed/Nota.App/AudioClipEditorView.cs
@@ -34,6 +34,9 @@ With **Transpose to project key** on (the Files tab's ⋮ menu), it is also move
 **one-shot** — a kick, a hit — is never warped.
 
 Long files decode in the background: the track appears straight away and its waveform fills in.
+Warping runs in the background too — the track says "Processing…" until the clip is stretched to
+the tempo. When you change a clip's tempo, markers, trim, pitch or warp mode, it keeps playing its
+previous version until the new one is ready.
 
 ## Sample
 

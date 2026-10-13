@@ -3,7 +3,7 @@ title: "The browser"
 description: "The browser's tabs — instruments, effects, files, presets, projects, MIDI map and history — searching, favourites and tags, and dragging things into the project."
 sidebar:
   order: 1
-updated: "0.50.1"
+updated: "0.52.1"
 status: done
 sources:
   - src/managed/Nota.App/BrowserView.cs
@@ -63,6 +63,11 @@ colour in the tag editor, and filter with the chips under the search box.
 | Drag onto a rack chain or a pad | Load it there |
 
 Effects and presets can also be dropped onto a return track or the master.
+
+An instrument preset dropped onto an instrument track loads into that track's instrument — it
+switches the instrument if the preset is for a different one, and the track's effects stay. Dropped
+on empty space, it starts a new track. Whatever you drop, the track it lands on becomes the
+selected one, a newly created track included.
 
 ## Hearing before loading
 

@@ -184,6 +184,9 @@ public sealed class Scenes
             _main = mw;
             mw.Show();
             Pump(20);
+            // The launch workspace starts from the default project template (instrument, audio,
+            // Reverb and Delay returns); the demo song is built on an empty engine instead.
+            _engine.Reset();
             // Name the project, as if it had been saved; headless also draws the NativeMenu inside
             // the window (on macOS it lives in the system menu bar), so hide that strip.
             var bundle = Path.Combine(_demo.Folder, "Night Drive.nota");
