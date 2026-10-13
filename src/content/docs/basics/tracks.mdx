@@ -3,9 +3,10 @@ title: Tracks
 description: Instrument, audio, return and group tracks — adding, selecting, colouring, grouping, routing and freezing them.
 sidebar:
   order: 4
-updated: "0.50.1"
+updated: "0.51.2"
 status: done
 sources:
+  - src/managed/Nota.Infrastructure/Persistence/ProjectTemplate.cs
   - src/managed/Nota.App/ArrangementView.cs
   - src/managed/Nota.App/ArrangementView.Tracks.cs
   - src/managed/Nota.App/ArrangementView.Groups.cs
@@ -81,7 +82,8 @@ tracks away.
 ## Routing
 
 - **Sends** — every track can send part of its signal to each return track: turn up its send
-  in the [Mixer](../../views/mixer/) or the Session view.
+  in the [Mixer](../../views/mixer/) or the Session view. A new project comes with two
+  returns ready to send to: **Reverb** and **Delay**, both set to **Wet Only**.
 - **MIDI from** — an instrument track can play the MIDI of another instrument track through
   its own instrument, to layer two sounds. It gets the notes **after** the source's MIDI
   effects, so an arpeggiator on the source drives both. Recording on the receiving track

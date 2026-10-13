@@ -1,11 +1,12 @@
 ---
 title: Первый трек
-description: От пустого проекта до готового WAV за десять минут — инструмент, несколько нот, эффект и луп.
+description: От нового проекта до готового WAV за десять минут — инструмент, несколько нот, эффект и луп.
 sidebar:
   order: 4
-updated: "0.50.1"
+updated: "0.51.2"
 status: done
 sources:
+  - src/managed/Nota.Infrastructure/Persistence/ProjectTemplate.cs
   - src/managed/Nota.App/MainWindow.Browser.cs
   - src/managed/Nota.App/PianoRollView.cs
   - src/managed/Nota.App/ExportWindow.cs
@@ -15,13 +16,15 @@ import { Aside, Steps } from '@astrojs/starlight/components';
 import Shot from '@components/Shot.astro';
 import Kbd from '@components/Kbd.astro';
 
-Этот урок проведёт вас от пустого проекта до короткого лупа, сохранённого в WAV. Нужно
+Этот урок проведёт вас от нового проекта до короткого лупа, сохранённого в WAV. Нужно
 только то, что уже есть в Nota, — без плагинов и сэмплов.
 
 ## 1. Новый проект
 
 В стартовом окне нажмите **New project** (или <Kbd>⌘ N</Kbd> в главном окне). Откроется
-пустой Arrangement: 120 BPM, размер 4/4.
+Arrangement на 120 BPM в размере 4/4 с треком инструмента (Nota Synth), аудиотреком и двумя
+треками возврата — **Reverb** и **Delay**. В этом уроке мы добавим свой трек инструмента;
+трек с Synth можно удалить (<Kbd>Delete</Kbd>), если он не нужен.
 
 ## 2. Инструмент
 
@@ -55,8 +58,8 @@ import Kbd from '@components/Kbd.astro';
 
 <Shot id="start-here/clip-editor" alt="MIDI-клип в редакторе клипов: ноты и столбики velocity" />
 
-**Grid** слева задаёт, к чему привязываются ноты; **Quantize** подтягивает к сетке
-выделенные ноты. Стрелки двигают выделенные ноты на шаг сетки (<Kbd>←</Kbd> <Kbd>→</Kbd>) или
+Ноты прилипают к видимой сетке — её шаг показывает кнопка в шапке редактора; **Quantize** слева
+подтягивает ноты к собственному шагу. Стрелки двигают выделенные ноты на шаг сетки (<Kbd>←</Kbd> <Kbd>→</Kbd>) или
 на полутон (<Kbd>↑</Kbd> <Kbd>↓</Kbd>), а <Kbd>⇧ ↑</Kbd> / <Kbd>⇧ ↓</Kbd> — на октаву.
 
 <Aside type="tip">
@@ -94,6 +97,11 @@ import Kbd from '@components/Kbd.astro';
 </Steps>
 
 <Shot id="start-here/browser-effects" alt="Вкладка Audio effects в браузере" width={300} />
+
+<Aside type="tip">
+Чтобы добавить эха или пространства, не трогая сам трек, используйте возвраты: откройте
+[микшер](../../views/mixer/) и поднимите у трека Volt посыл на **Delay** или **Reverb**.
+</Aside>
 
 У каждого устройства есть заводские пресеты — щёлкните имя пресета в заголовке устройства.
 

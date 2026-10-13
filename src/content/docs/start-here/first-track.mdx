@@ -1,11 +1,12 @@
 ---
 title: Your first track
-description: From an empty project to an exported WAV in ten minutes — an instrument, a few notes, an effect, a loop.
+description: From a new project to an exported WAV in ten minutes — an instrument, a few notes, an effect, a loop.
 sidebar:
   order: 4
-updated: "0.50.1"
+updated: "0.51.2"
 status: done
 sources:
+  - src/managed/Nota.Infrastructure/Persistence/ProjectTemplate.cs
   - src/managed/Nota.App/MainWindow.Browser.cs
   - src/managed/Nota.App/PianoRollView.cs
   - src/managed/Nota.App/ExportWindow.cs
@@ -15,13 +16,15 @@ import { Aside, Steps } from '@astrojs/starlight/components';
 import Shot from '@components/Shot.astro';
 import Kbd from '@components/Kbd.astro';
 
-This walk-through takes you from an empty project to a short loop exported as a WAV file.
+This walk-through takes you from a new project to a short loop exported as a WAV file.
 It uses only what comes with Nota — no plug-ins, no samples.
 
 ## 1. Start a project
 
 On the start window click **New project** (or press <Kbd>⌘ N</Kbd> in the main window). You
-get an empty Arrangement at 120 BPM in 4/4.
+get an Arrangement at 120 BPM in 4/4 with an instrument track (Nota Synth), an audio track
+and two return tracks, **Reverb** and **Delay**. This walk-through adds its own instrument
+track; delete the Synth track (<Kbd>Delete</Kbd>) if you don't need it.
 
 ## 2. Add an instrument
 
@@ -56,8 +59,8 @@ preview strip at the bottom of the browser.
 
 <Shot id="start-here/clip-editor" alt="A MIDI clip open in the clip editor, with notes and their velocity stems" />
 
-The **Grid** on the left sets what notes snap to; **Quantize** pulls the selected notes onto
-it. With notes selected, the arrow keys move them by the grid (<Kbd>←</Kbd> <Kbd>→</Kbd>) or a
+Notes snap to the grid you see — the chip in the editor's header shows its step; **Quantize**
+on the left pulls the notes onto its own step. With notes selected, the arrow keys move them by the grid (<Kbd>←</Kbd> <Kbd>→</Kbd>) or a
 semitone (<Kbd>↑</Kbd> <Kbd>↓</Kbd>), and <Kbd>⇧ ↑</Kbd> / <Kbd>⇧ ↓</Kbd> move them an octave.
 
 <Aside type="tip">
@@ -95,6 +98,11 @@ it, or drag the clip's right edge.
 </Steps>
 
 <Shot id="start-here/browser-effects" alt="The Audio effects tab of the browser" width={300} />
+
+<Aside type="tip">
+For more echo or space without changing the track itself, use the returns instead: open the
+[Mixer](../../views/mixer/) and turn up the Volt track's send to **Delay** or **Reverb**.
+</Aside>
 
 Every device has factory presets — click the preset name in the device's header to browse
 them.

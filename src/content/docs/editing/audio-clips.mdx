@@ -3,10 +3,11 @@ title: Audio clips and warp
 description: Editing audio clips — trimming, gain, pitch, reverse, warping to the tempo with markers, volume and pan envelopes, and the clip ADSR.
 sidebar:
   order: 2
-updated: "0.50.1"
+updated: "0.51.2"
 status: done
 sources:
   - src/managed/Nota.App/AudioClipEditorView.cs
+  - src/managed/Nota.App/SnapChip.cs
   - src/managed/Nota.App/ClipAdsrKit.cs
   - src/managed/Nota.App/ClipPropsView.cs
   - src/managed/Nota.App/MainWindow.AudioImport.cs
@@ -36,10 +37,16 @@ Long files decode in the background: the track appears straight away and its wav
 
 ## Sample
 
+The chip in the header is the clip editors' [snap grid](../../basics/transport/#the-snap-grid),
+shared with the piano roll: it shows the step (**Auto · 1/16**) and opens the grid menu. The
+trim brackets, the warp markers and the envelope points land on the lines in the waveform —
+in **Auto** they get finer as you zoom in. Hold <Kbd>⌥</Kbd> while dragging to place one
+freely.
+
 The **Sample** tab shows the waveform with the part of the file the clip plays.
 
-- **Clip** — **Start** and **Length**. Drag the brackets on the waveform to trim; with **Snap**
-  on, they land on the beat grid.
+- **Clip** — **Start** and **Length**. Drag the brackets on the waveform to trim; on a warped
+  clip they land on the grid.
 - **Playback** — **Gain** (drag or double-click to type) and **Pitch** in semitones.
   **Reverse** plays the clip backwards.
 
@@ -64,7 +71,8 @@ the grid. **To transients** pins a marker on every hit, so a drum loop locks to 
 ## Envelope
 
 **Envelope** draws **Volume** and **Pan** curves across the clip. Click to add a point, drag
-to move it, right-click to delete it.
+to move it, right-click to delete it. Points snap in time to the grid, which here follows the
+clip as it plays — from its start, left to right even when the clip is reversed.
 
 ## ADSR
 

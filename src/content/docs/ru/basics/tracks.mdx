@@ -3,9 +3,10 @@ title: Треки
 description: Треки инструментов, аудио, возвратов и группы — как добавлять, выделять, раскрашивать, группировать, маршрутизировать и замораживать.
 sidebar:
   order: 4
-updated: "0.50.1"
+updated: "0.51.2"
 status: done
 sources:
+  - src/managed/Nota.Infrastructure/Persistence/ProjectTemplate.cs
   - src/managed/Nota.App/ArrangementView.cs
   - src/managed/Nota.App/ArrangementView.Tracks.cs
   - src/managed/Nota.App/ArrangementView.Groups.cs
@@ -83,7 +84,8 @@ import Kbd from '@components/Kbd.astro';
 ## Маршрутизация
 
 - **Посылы** (sends) — каждый трек может отправлять часть сигнала на каждый трек возврата:
-  поднимите посыл в [микшере](../../views/mixer/) или в виде Session.
+  поднимите посыл в [микшере](../../views/mixer/) или в виде Session. В новом проекте уже
+  есть два возврата: **Reverb** и **Delay**, у обоих включён **Wet Only**.
 - **MIDI from** — трек инструмента может играть MIDI другого трека инструмента своим
   инструментом, чтобы наслоить два звука. Ноты приходят **после** MIDI-эффектов источника,
   так что арпеджиатор на источнике управляет обоими. Запись на принимающем треке сохраняет

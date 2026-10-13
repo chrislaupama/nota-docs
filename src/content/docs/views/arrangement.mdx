@@ -3,7 +3,7 @@ title: Arrangement
 description: The song on a timeline — moving and trimming clips, selecting, zooming, the overview strip, sections and clip names.
 sidebar:
   order: 1
-updated: "0.50.1"
+updated: "0.51.2"
 status: done
 sources:
   - src/managed/Nota.App/ArrangementView.cs
@@ -39,8 +39,9 @@ From top to bottom: the **Overview** strip, the **Sections** lane, the ruler wit
 | Drag across empty space | Select every clip the rectangle touches |
 | <Kbd>⌘ A</Kbd> | Select all clips |
 
-Clips snap to the **GRID** set in the transport bar while you drag them; the magnet button
-switches snapping off. Dragging several selected clips moves them together, as one undo step.
+Clips snap to the [snap grid](../../basics/transport/#the-snap-grid) while you drag them —
+in **Auto** it follows the zoom, so they land on the lines you see — and the edges of
+neighbouring clips pull them in. The magnet button (<Kbd>⌘ 4</Kbd>) switches snapping off. Dragging several selected clips moves them together, as one undo step.
 
 Right-click a clip for **Split here**, **Duplicate**, **Delete**, **Deactivate clip**,
 **Reverse** (audio), **Consolidate**, **Copy** / **Cut** / **Paste**, **Rename…**, **Loop

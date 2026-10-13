@@ -3,7 +3,7 @@ title: Piano roll
 description: Editing MIDI clips — drawing and moving notes, velocity, grid and quantize, scale, clip envelopes and the generator and transform tools.
 sidebar:
   order: 1
-updated: "0.50.1"
+updated: "0.51.2"
 status: done
 sources:
   - src/native/nota.engine/src/MidiClip.h
@@ -33,6 +33,7 @@ tab of the panel at the bottom.
 | Double-click empty grid | Add a note |
 | Double-click a note | Delete it |
 | Drag a note | Move it in time and pitch |
+| Drag with <Kbd>⌥</Kbd> | Ignore the grid for this drag |
 | Drag a note's edge | Change where it starts or ends |
 | Click a note · <Kbd>⇧</Kbd>-click | Select it · add it to the selection |
 | Drag across empty grid | Select the notes in the rectangle |
@@ -79,8 +80,15 @@ several notes selected, they move together. <Kbd>⇧</Kbd> adds a note to the se
 ## The left column
 
 - **Clip** — **Start** and **Length**, and **Loop** with the loop length.
-- **Grid** — what notes snap to (1/16 and so on). **Quantize** pulls the selected notes onto the
-  grid, as far as **Strength** says — 100 % is rigid, less keeps some of the feel.
+- **Quantize** — its own step (1/32 to 1/2, triplets too; 1/16 by default), which doesn't
+  change with the zoom. **Quantize** pulls the notes onto it, as far as **Strength** says —
+  100 % is rigid, less keeps some of the feel. The clip tools use the same step.
+
+Notes snap to the piano roll's [snap grid](../../basics/transport/#the-snap-grid): the chip
+in the clip editor's header shows the step (**Auto · 1/16**) and opens the grid menu. In
+**Auto** it follows the zoom, like the Arrangement's, but the two have separate settings (the
+audio clip editor shares the piano roll's).
+The arrows move the selection by that step.
 - **Transpose** — move the selection by semitones or octaves.
 
 ## Scale

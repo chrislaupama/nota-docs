@@ -3,12 +3,14 @@ title: Transport
 description: Play, stop and record; tempo, time signature and project key; loop, metronome, count-in, grid and follow.
 sidebar:
   order: 3
-updated: "0.50.1"
+updated: "0.51.2"
 status: done
 sources:
   - src/managed/Nota.App/MainWindow.axaml
   - src/managed/Nota.App/MainWindow.axaml.cs
   - src/managed/Nota.App/MainWindow.Input.cs
+  - src/managed/Nota.App/SnapChip.cs
+  - src/managed/Nota.Application/Editing/SnapGrid.cs
   - src/managed/Nota.Presentation/ViewModels/TransportViewModel.cs
 ---
 
@@ -68,14 +70,41 @@ count-in. Nota remembers the setting.
 
 ## Grid, snap and follow
 
-- **GRID** — click to cycle the snap grid for moving clips: 1/16, 1/8, 1/4, 1/2, 1 bar.
-- **Snap** (the magnet) — clips snap to the grid while you drag them. Hold <Kbd>⌥</Kbd> while
-  dragging to place a clip freely just this once.
+- **GRID** — the Arrangement's snap grid: it shows the step clips snap to right now (**AUTO
+  GRID** under it while it follows the zoom). Click it for the grid menu — see
+  [The snap grid](#the-snap-grid).
+- **Snap** (the magnet) — clips snap to the grid while you drag them (<Kbd>⌘ 4</Kbd>). Hold
+  <Kbd>⌥</Kbd> while dragging to place a clip freely just this once.
 - **Follow** — the Arrangement scrolls to keep the playhead in view. Also in **View ▸ Follow
   playhead**.
 - **Automation** — shows the automation lanes of the tracks (<Kbd>⌘ ⇧ A</Kbd>). The button
   next to it hands controls you've moved by hand back to their automation — see
   [Automation](../../editing/automation/).
+
+### The snap grid
+
+The Arrangement and the clip editors each have a snap grid — the GRID cell here, a chip in
+the clip editor's header there (the piano roll and the audio clip editor share one setting).
+The two settings are separate and Nota remembers them.
+
+- **Auto** (the default) — the step follows the zoom, so you snap to the lines you see:
+  zoom in for eighths and sixteenths, zoom out and clips move by whole bars. **Narrow**,
+  **Medium** and **Wide** set how dense the lines get.
+- **A fixed step** — 1/32, 1/16, 1/8, 1/4, 1/2, 1 bar, 2 bars or 4 bars, whatever the zoom.
+  When it is finer than the lines on screen, its label dims: zoom in to see it.
+- **Triplets** — three steps where there were two (1/8T, 1/16T …), in Auto and fixed alike.
+- **Snap to grid** — the same switch as the magnet.
+
+| Keys | Do |
+|---|---|
+| <Kbd>⌘ 1</Kbd> · <Kbd>⌘ 2</Kbd> | Narrow · widen the grid (in Auto, the density) |
+| <Kbd>⌘ 3</Kbd> | Triplets on / off |
+| <Kbd>⌘ 4</Kbd> | Snap on / off |
+| <Kbd>⌘ 5</Kbd> | Switch between Auto and the last fixed step |
+
+The keys act on the editor you used last — the Arrangement, or the clip editor (piano roll
+or audio) once you've clicked into it — and the status bar says which. They are also in **Edit ▸
+Grid**.
 
 ## The right side
 

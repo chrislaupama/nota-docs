@@ -50,6 +50,7 @@ const renderKey = (key) =>
 const sentence = (t) => t.charAt(0) + t.slice(1).toLowerCase().replace(/\bmidi\b/g, 'MIDI').replace(/\bmacos\b/g, 'macOS');
 const ru = {
   FILE: 'Файл', TRANSPORT: 'Транспорт', 'ARRANGEMENT & EDITING': 'Arrangement и редактирование',
+  'GRID (ARRANGEMENT OR CLIP EDITOR — WHICHEVER YOU USED LAST)': 'Сетка (Arrangement или редактор клипа — тот, где вы работали последним)',
   'TRACKS (AFTER A CLICK IN THE TRACK HEADERS)': 'Треки (после щелчка по заголовкам треков)',
   'SESSION (AFTER A CLICK IN THE GRID)': 'Session (после щелчка по сетке)', 'PIANO ROLL': 'Piano roll',
   'PLAY NOTES (COMPUTER KEYBOARD)': 'Игра нотами (клавиатура компьютера)', 'BROWSER · PREVIEW': 'Браузер · предпрослушивание',

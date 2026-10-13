@@ -3,9 +3,10 @@ title: Проекты и сохранение
 description: Что такое проект .nota, сохранение и открытие, папка проектов, восстановление после сбоя и выход с несохранёнными изменениями.
 sidebar:
   order: 1
-updated: "0.50.1"
+updated: "0.51.2"
 status: done
 sources:
+  - src/managed/Nota.Infrastructure/Persistence/ProjectTemplate.cs
   - src/managed/Nota.App/MainWindow.Files.cs
   - src/managed/Nota.App/MainWindow.Recovery.cs
   - src/managed/Nota.App/SaveChangesWindow.cs
@@ -32,7 +33,7 @@ import Kbd from '@components/Kbd.astro';
 
 | Команда | Клавиши | |
 |---|---|---|
-| **File ▸ New** | <Kbd>⌘ N</Kbd> | Пустой проект. |
+| **File ▸ New** | <Kbd>⌘ N</Kbd> | [Новый проект](#новый-проект), готовый к игре. |
 | **File ▸ Open…** | <Kbd>⌘ O</Kbd> | Открыть проект `.nota`. |
 | **File ▸ Save** | <Kbd>⌘ S</Kbd> | Сохранить; в первый раз — выбрать имя и место. Каждое сохранение создаёт [версию](../version-history/). |
 | **File ▸ Save As…** | <Kbd>⌘ ⇧ S</Kbd> | Сохранить под новым именем. История версий переезжает вместе с проектом. |
@@ -41,6 +42,16 @@ import Kbd from '@components/Kbd.astro';
 Проект можно открыть и из списка недавних в [стартовом окне](../../start-here/first-launch/),
 и из вкладки **Projects** браузера — там показана папка проектов: **Документы ▸ Nota
 Projects**, если вы не выбрали другую в [Settings ▸ Library](../../preferences/library/).
+
+## Новый проект
+
+Новый проект — и тот, с которым Nota открывается, если стартовое окно выключено, — не пустой.
+В нём есть трек инструмента с **Nota Synth** и пустым клипом на такт, аудиотрек и два трека
+возврата: **Reverb** с Nota Reverb и **Delay** с Nota Delay, у обоих включён **Wet Only**.
+Можно сразу играть, а чтобы добавить пространство или эхо, поднимите у трека
+[посыл](../tracks/#маршрутизация). Это обычные треки: переименовывайте, меняйте или удаляйте
+их как угодно. Новый проект считается неизменённым, отменять в нём нечего, так
+что при закрытии Nota не спросит, сохранить ли его.
 
 ## Как добавить материал
 
