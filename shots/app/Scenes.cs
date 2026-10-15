@@ -29,6 +29,7 @@ namespace NotaDocsShots;
 ///             origin (devices: the Devices panel had the focus), crop (true: just the palette card)
 ///   mixer     width, height
 ///   prefs     page (index in Settings' sidebar, 0 = Audio), tab (a switch on the page)
+///   connect   the Connect phone popup, with Nota Remote switched on
 ///   start · about · whatsnew · export · unsaved
 /// </summary>
 public sealed class Scenes
@@ -86,6 +87,7 @@ public sealed class Scenes
             case "about": Simple(shot, new AboutWindow()); break;
             case "whatsnew": WhatsNew(shot); break;
             case "export": Simple(shot, new ExportWindow(128, 32, 124)); break;
+            case "connect": Connect(shot); break;
             case "unsaved":
                 Simple(shot, new SaveChangesWindow("Unsaved changes", "Save changes to “Night Drive” before closing?",
                     "Night Drive", "Unsaved for 12 minutes"));
@@ -376,6 +378,32 @@ public sealed class Scenes
         Pump(20);
         Save(win, shot.Id);
         win.Close();
+    }
+
+    /// <summary>The Connect phone popup (top bar's Remote button) with the server running, so
+    /// it shows the QR, the address and the code. The address is scrubbed like any other.</summary>
+    private void Connect(Shot shot)
+    {
+        var settings = (ISettingsService)App.Services!.GetService(typeof(ISettingsService))!;
+        var remoteType = typeof(App).Assembly.GetType("Nota.App.Remote.RemoteService")
+            ?? typeof(App).Assembly.GetTypes().First(t => t.Name == "RemoteService");
+        var remote = App.Services!.GetService(remoteType)!;
+        settings.Current.RemoteEnabled = true;
+        var apply = (Task)remoteType.GetMethod("ApplyAsync")!.Invoke(remote, null)!;
+        // ApplyAsync resumes on the UI thread, so pump it rather than block on it.
+        for (int i = 0; i < 200 && !apply.IsCompleted; i++) Pump(1);
+        var viewType = typeof(App).Assembly.GetTypes().First(t => t.Name == "ConnectPhoneView");
+        var view = (Control)Activator.CreateInstance(viewType, BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic, null,
+            new object[] { remote, settings, _engine }, null)!;
+        var holder = new Border { Padding = new Thickness(0), Child = view, HorizontalAlignment = HorizontalAlignment.Left, VerticalAlignment = VerticalAlignment.Top };
+        var win = Host(holder, 400, shot.Int("height") ?? 640);
+        win.Show();
+        Pump(20);
+        Save(win, shot.Id, view);
+        win.Close();
+        settings.Current.RemoteEnabled = false;
+        var stop = (Task)remoteType.GetMethod("ApplyAsync")!.Invoke(remote, null)!;
+        for (int i = 0; i < 200 && !stop.IsCompleted; i++) Pump(1);
     }
 
     /// <summary>Real audio / MIDI / gamepad devices on this machine show under stock names.</summary>

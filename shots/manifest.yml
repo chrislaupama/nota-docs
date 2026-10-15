@@ -73,8 +73,8 @@ shots:
   - { id: control/nota-remote/big-transport, source: remote, args: {transport: true} }
   - { id: control/nota-remote/theme-menu, source: remote, args: {menu: true} }
   - { id: control/nota-remote/ember, source: remote, args: {theme: {dark: "ember-graphite", light: "ember-paper"}} }
-  # Desktop-side panels — still mockups
-  - { id: control/nota-remote/connect-phone, source: design, file: "Nota Remote.html", selector: "[id=\"5a\"]", inner: true }
+  - { id: control/nota-remote/connect-phone, source: app, scene: connect }
+  # Desktop-side panels — still mockups (not used on any page)
   - { id: control/nota-remote/settings, source: design, file: "Nota Remote.html", selector: "[id=\"5b\"]", inner: true }
   - { id: control/nota-remote/midi-map, source: design, file: "Nota Remote.html", selector: "[id=\"5c\"]", inner: true }
 
