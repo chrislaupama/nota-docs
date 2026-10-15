@@ -210,9 +210,13 @@ if (app.length) {
         console.log(line);
       }
     }
-    if (run.status !== 0 && okIds.size === 0) console.log(run.stderr || run.stdout);
+    if (run.status !== 0) console.log((run.stderr || run.stdout).split('\n').slice(-15).join('\n'));
     for (const s of shots) {
-      if (!okIds.has(s.id)) continue;
+      if (!okIds.has(s.id)) {
+        // The harness stopped before this shot (a crash ends the run silently otherwise).
+        if (!failures.some((f) => f.startsWith(`${s.id} (`))) failures.push(`${s.id} (${theme}): not rendered`);
+        continue;
+      }
       await toWebp(path.join(out, s.id + '.png'), theme, s.id);
       console.log(`ok     ${s.id}  (app · ${theme})`);
     }
